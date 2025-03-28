@@ -89,5 +89,20 @@ Menurut saya, penggunaan DashMap dalam implementasi tutorial ini lebih optimal d
 
 Dalam tutorial ini, Singleton telah diterapkan menggunakan lazy_static, dan di dalamnya digunakan DashMap. Dengan demikian, DashMap dan Singleton berjalan bersamaan dalam implementasi ini. Tujuan utama dari Singleton adalah memastikan hanya ada satu instance dari objek yang digunakan selama program berjalan, sedangkan DashMap adalah versi thread-safe dari HashMap yang memungkinkan akses bersamaan tanpa masalah race condition. Jika DashMap diganti dengan Singleton yang hanya menggunakan HashMap biasa, maka keamanan dalam lingkungan multithreading tidak akan terjamin. Oleh karena itu, mempertahankan DashMap adalah keputusan desain yang lebih baik untuk sistem yang membutuhkan kinerja tinggi dalam kondisi konkuren. Namun, jika aspek thread safety tidak menjadi prioritas, maka menggunakan Singleton dengan HashMap standar sudah cukup.
 #### Reflection Publisher-2
+> In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
 
+Pemisahan Service dan Repository mengacu pada prinsip Single Responsibility Principle (SRP) dalam pemrograman berorientasi objek (OOP). Jika Model menangani akses data sekaligus logika bisnis, maka kode akan menjadi lebih sulit dikelola, diperluas, dan diuji. Dengan memisahkan Repository dan Service, setiap bagian memiliki tanggung jawab spesifik: Repository berfokus pada interaksi dengan database, sedangkan Service menangani logika bisnis. Pemisahan ini membuat kode lebih modular, lebih mudah diuji, serta memungkinkan pengembangan tanpa harus mengubah banyak bagian dalam sistem.
+
+> What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+Jika Model menangani semuanya tanpa pemisahan, kompleksitas kode akan meningkat seiring bertambahnya fitur. Ketergantungan antar Model akan semakin besar, sehingga perubahan kecil bisa berdampak luas pada seluruh sistem. Selain itu, tanpa pemisahan yang jelas, akan ada banyak kode yang berulang, yang bertentangan dengan prinsip DRY (Don't Repeat Yourself). Akibatnya, proses refactoring menjadi lebih sulit, dan risiko kesalahan saat melakukan perubahan semakin tinggi. Dengan memisahkan Model, Service, dan Repository, pengembangan bisa lebih terstruktur dan mudah dipelihara.
+
+> Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects
+
+Saya sebelumnya telah menggunakan Postman dalam mata kuliah Pemrograman Berbasis Platform (PBP) untuk menguji API endpoints dengan lebih efisien. Postman membantu menampilkan data dari endpoint dengan jelas dan memungkinkan pengujian API tanpa harus menulis kode tambahan.
+
+Fitur yang menurut saya menarik dan berguna dalam proyek ini maupun proyek mendatang adalah:
+- Collections → Memungkinkan pengelompokkan request API yang berhubungan agar lebih mudah dikelola.
+- Automated Testing → Memungkinkan penambahan skrip pengujian otomatis untuk memastikan setiap endpoint merespons sesuai ekspektasi.
+- Environment Variables → Mempermudah pengelolaan konfigurasi API untuk berbagai lingkungan (misalnya, development dan production).
 #### Reflection Publisher-3
