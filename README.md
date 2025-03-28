@@ -56,14 +56,14 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [ ] Commit: `Implement add function in Subscriber repository.`
     -   [ ] Commit: `Implement list_all function in Subscriber repository.`
     -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [ x ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [ x] Commit: `Create Notification service struct skeleton.`
+    -   [ x] Commit: `Implement subscribe function in Notification service.`
+    -   [ x] Commit: `Implement subscribe function in Notification controller.`
+    -   [ x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [ x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [ x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
