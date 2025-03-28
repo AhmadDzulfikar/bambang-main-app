@@ -106,3 +106,18 @@ Fitur yang menurut saya menarik dan berguna dalam proyek ini maupun proyek menda
 - Automated Testing → Memungkinkan penambahan skrip pengujian otomatis untuk memastikan setiap endpoint merespons sesuai ekspektasi.
 - Environment Variables → Mempermudah pengelolaan konfigurasi API untuk berbagai lingkungan (misalnya, development dan production).
 #### Reflection Publisher-3
+> Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+Dalam tutorial ini, pola Observer yang diterapkan adalah Push Model, di mana publisher (sistem) secara langsung mengirimkan notifikasi ke subscribers setiap kali terjadi perubahan status produk. Hal ini terlihat pada implementasi NotificationService::notify(), di mana notifikasi dikirim ke setiap subscriber menggunakan metode subscriber_clone.update(payload_clone). Dengan pendekatan ini, subscribers menerima update secara otomatis tanpa harus meminta data secara manual.
+
+> What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+Jika kita menggunakan Pull Model, salah satu keuntungannya adalah mengurangi beban publisher, karena publisher tidak perlu mengirimkan notifikasi secara langsung ke setiap subscriber. Sebaliknya, setiap subscriber dapat mengambil (pull) data sesuai dengan kebutuhan mereka.
+
+Namun, kelemahan utama dari Pull Model adalah efisiensi yang lebih rendah, terutama jika jumlah subscribers banyak. Subscribers harus melakukan polling secara berkala untuk mengecek apakah ada perubahan status produk. Hal ini bisa menyebabkan overhead yang tidak perlu, karena mereka terus-menerus meminta data meskipun tidak ada perubahan. Dalam skenario ini, Push Model lebih efisien karena update dikirim hanya saat ada perubahan.
+
+> Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+Jika multithreading tidak digunakan, aplikasi akan menghadapi kesulitan dalam menangani notifikasi untuk banyak subscribers. Semua notifikasi harus dikirim satu per satu dalam satu thread, yang dapat menyebabkan bottleneck dan memperlambat eksekusi utama program.
+
+Dengan menerapkan multithreading (misalnya dengan thread::spawn()), proses pengiriman notifikasi dapat dilakukan secara paralel, sehingga aplikasi tetap responsif dan dapat menangani banyak subscribers tanpa memperlambat proses utama. Hal ini sangat penting untuk meningkatkan kinerja dan skalabilitas sistem, terutama jika jumlah subscribers terus bertambah.
