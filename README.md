@@ -77,7 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+> In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
 
+Dalam kasus aplikasi BambangShop saat ini, subscriber hanya terdiri dari satu kelas, sehingga penggunaan interface atau trait belum diperlukan. Sebuah model tunggal sudah cukup untuk menangani kebutuhan yang ada. Namun, jika di masa depan BambangShop memiliki berbagai jenis subscriber dengan perilaku berbeda, maka penggunaan interface atau trait akan menjadi pilihan yang lebih baik. Dengan begitu, setiap subscriber dapat diimplementasikan secara fleksibel sambil tetap mengikuti kontrak yang telah ditetapkan, sehingga meningkatkan skalabilitas dan kemudahan pemeliharaan kode.
+
+> id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+Menurut saya, penggunaan DashMap dalam implementasi tutorial ini lebih optimal dibandingkan dengan Vec. Meskipun Vec bisa digunakan jika datanya masih kecil, DashMap lebih unggul dalam hal kinerja ketika mengelola subscriber. Hal ini disebabkan oleh perbedaan kompleksitas waktu, di mana DashMap memiliki pencarian O(1), sedangkan Vec membutuhkan O(n) dalam skenario terburuk. Jika jumlah subscriber meningkat di masa depan, penggunaan DashMap akan memastikan pencarian tetap cepat dan efisien, menjaga performa program tetap optimal.
+
+>When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+Dalam tutorial ini, Singleton telah diterapkan menggunakan lazy_static, dan di dalamnya digunakan DashMap. Dengan demikian, DashMap dan Singleton berjalan bersamaan dalam implementasi ini. Tujuan utama dari Singleton adalah memastikan hanya ada satu instance dari objek yang digunakan selama program berjalan, sedangkan DashMap adalah versi thread-safe dari HashMap yang memungkinkan akses bersamaan tanpa masalah race condition. Jika DashMap diganti dengan Singleton yang hanya menggunakan HashMap biasa, maka keamanan dalam lingkungan multithreading tidak akan terjamin. Oleh karena itu, mempertahankan DashMap adalah keputusan desain yang lebih baik untuk sistem yang membutuhkan kinerja tinggi dalam kondisi konkuren. Namun, jika aspek thread safety tidak menjadi prioritas, maka menggunakan Singleton dengan HashMap standar sudah cukup.
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
